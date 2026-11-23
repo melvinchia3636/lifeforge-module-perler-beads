@@ -1,0 +1,46 @@
+{
+  "title": "拼豆",
+  "description": "创建、生成并保存拼豆蓝图。",
+  "modals": {
+    "uploadImage": "上传图片",
+    "gridPreview": "网格预览"
+  },
+  "tabs": {
+    "original": "原图",
+    "result": "结果"
+  },
+  "inputs": {
+    "image": "图片",
+    "width": "宽度",
+    "height": "高度",
+    "offsetX": "X 偏移",
+    "offsetY": "Y 偏移",
+    "maxColors": "最大颜色数",
+    "lockHeight": "锁定高度为图片比例"
+  },
+  "messages": {
+    "processing": "正在去除边缘…",
+    "matching": "正在匹配颜色…"
+  },
+  "empty": {
+    "result": {
+      "title": "暂无可编辑内容",
+      "description": "上传图片并生成蓝图后即可在此查看。"
+    }
+  },
+  "sidebar": {
+    "showColorCode": "显示颜色代码",
+    "showGridLines": "显示网格线",
+    "displaySettings": "显示设置",
+    "statistics": "统计"
+  },
+  "stats": {
+    "size": "尺寸",
+    "totalBeads": "总珠子数",
+    "colorsUsed": "使用颜色"
+  },
+  "buttons": {
+    "uploadImage": "上传图片",
+    "proceed": "继续"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Perler Beads",
+  "description": "Create, generate, and store perler bead blueprints.",
+  "modals": {
+    "uploadImage": "Upload Image",
+    "gridPreview": "Grid Preview"
+  },
+  "tabs": {
+    "original": "Original",
+    "result": "Result"
+  },
+  "inputs": {
+    "image": "Image",
+    "width": "Width",
+    "height": "Height",
+    "offsetX": "Offset X",
+    "offsetY": "Offset Y",
+    "maxColors": "Max colors",
+    "lockHeight": "Lock height to image"
+  },
+  "messages": {
+    "processing": "Removing margins…",
+    "matching": "Matching colours…"
+  },
+  "empty": {
+    "result": {
+      "title": "Nothing to Edit",
+      "description": "Upload an image and generate a blueprint to see it here."
+    }
+  },
+  "sidebar": {
+    "showColorCode": "Show color code",
+    "showGridLines": "Show grid lines",
+    "displaySettings": "Display settings",
+    "statistics": "Statistics"
+  },
+  "stats": {
+    "size": "Size",
+    "totalBeads": "Total beads",
+    "colorsUsed": "Colors used"
+  },
+  "buttons": {
+    "uploadImage": "Upload image",
+    "proceed": "Proceed"
+  }
+}

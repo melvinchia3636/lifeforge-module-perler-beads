@@ -1,0 +1,46 @@
+{
+  "title": "拼豆",
+  "description": "建立、產生並儲存拼豆藍圖。",
+  "modals": {
+    "uploadImage": "上傳圖片",
+    "gridPreview": "網格預覽"
+  },
+  "tabs": {
+    "original": "原圖",
+    "result": "結果"
+  },
+  "inputs": {
+    "image": "圖片",
+    "width": "寬度",
+    "height": "高度",
+    "offsetX": "X 偏移",
+    "offsetY": "Y 偏移",
+    "maxColors": "最大顏色數",
+    "lockHeight": "鎖定高度為圖片比例"
+  },
+  "messages": {
+    "processing": "正在去除邊緣…",
+    "matching": "正在匹配顏色…"
+  },
+  "empty": {
+    "result": {
+      "title": "暫無可編輯內容",
+      "description": "上傳圖片並產生藍圖後即可在此檢視。"
+    }
+  },
+  "sidebar": {
+    "showColorCode": "顯示顏色代碼",
+    "showGridLines": "顯示網格線",
+    "displaySettings": "顯示設定",
+    "statistics": "統計"
+  },
+  "stats": {
+    "size": "尺寸",
+    "totalBeads": "總珠子數",
+    "colorsUsed": "使用顏色"
+  },
+  "buttons": {
+    "uploadImage": "上傳圖片",
+    "proceed": "繼續"
+  }
+}

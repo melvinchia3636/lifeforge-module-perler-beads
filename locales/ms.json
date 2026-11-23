@@ -1,0 +1,46 @@
+{
+  "title": "Manik Perler",
+  "description": "Cipta, jana dan simpan blueprint manik perler.",
+  "modals": {
+    "uploadImage": "Muat Naik Imej",
+    "gridPreview": "Pratonton Grid"
+  },
+  "tabs": {
+    "original": "Asal",
+    "result": "Hasil"
+  },
+  "inputs": {
+    "image": "Imej",
+    "width": "Lebar",
+    "height": "Tinggi",
+    "offsetX": "Ofset X",
+    "offsetY": "Ofset Y",
+    "maxColors": "Warna maksimum",
+    "lockHeight": "Kunci tinggi kepada imej"
+  },
+  "messages": {
+    "processing": "Membuang margin…",
+    "matching": "Memadankan warna…"
+  },
+  "empty": {
+    "result": {
+      "title": "Tiada Apa untuk Disunting",
+      "description": "Muat naik imej dan jana blueprint untuk melihatnya di sini."
+    }
+  },
+  "sidebar": {
+    "showColorCode": "Tunjuk kod warna",
+    "showGridLines": "Tunjuk garis grid",
+    "displaySettings": "Tetapan paparan",
+    "statistics": "Statistik"
+  },
+  "stats": {
+    "size": "Saiz",
+    "totalBeads": "Jumlah manik",
+    "colorsUsed": "Warna digunakan"
+  },
+  "buttons": {
+    "uploadImage": "Muat naik imej",
+    "proceed": "Teruskan"
+  }
+}

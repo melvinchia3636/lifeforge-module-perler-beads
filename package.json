@@ -1,0 +1,44 @@
+{
+  "name": "@lifeforge/melvinchia3636--perler-beads",
+  "displayName": "Perler Beads",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/melvinchia3636/lifeforge-module-perler-beads.git"
+  },
+  "version": "0.0.1",
+  "type": "module",
+  "author": "melvinchia3636 <melvinchia623600@gmail.com>",
+  "description": "Create, generate, and store perler bead blueprints.",
+  "scripts": {
+    "typecheck": "pnpm run typecheck:client && pnpm run typecheck:server",
+    "typecheck:client": "cd client && tsc",
+    "typecheck:server": "cd server && tsc",
+    "build": "pnpm run build:client && pnpm run build:server",
+    "build:client": "cd client && vite build",
+    "build:server": "cd server && vite build"
+  },
+  "dependencies": {
+    "culori": "^4.0.2",
+    "konva": "^10.10.0",
+    "react-konva": "~19.2.7",
+    "react-zoom-pan-pinch": "^4.4.0",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "@types/culori": "^4.0.1"
+  },
+  "lifeforge": {
+    "icon": "uix-sharp:concrete-pipe",
+    "category": "Games"
+  },
+  "peerDependencies": {
+    "@lifeforge/api": "workspace:*",
+    "@lifeforge/configs": "workspace:*",
+    "@lifeforge/drizzle": "workspace:*",
+    "@lifeforge/federation": "workspace:*",
+    "@lifeforge/file-storage": "workspace:*",
+    "@lifeforge/localization": "workspace:*",
+    "@lifeforge/server-utils": "workspace:*",
+    "@lifeforge/ui": "workspace:*"
+  }
+}
