@@ -3,44 +3,117 @@
   "description": "建立、產生並儲存拼豆藍圖。",
   "modals": {
     "uploadImage": "上傳圖片",
-    "gridPreview": "網格預覽"
+    "gridPreview": "網格預覽",
+    "saveBlueprint": "儲存藍圖",
+    "renameBlueprint": "重新命名藍圖",
+    "addOutline": "新增輪廓",
+    "preview": "預覽",
+    "leaveUnsaved": {
+      "title": "藍圖尚未儲存",
+      "description": "您有未儲存的變更。要在不儲存的情況下離開嗎？"
+    }
   },
   "tabs": {
     "original": "原圖",
-    "result": "結果"
+    "result": "結果",
+    "grid": "網格",
+    "colors": "顏色",
+    "adjustments": "調整",
+    "view": "檢視",
+    "edit": "編輯"
   },
   "inputs": {
     "image": "圖片",
+    "name": "名稱",
+    "namePlaceholder": "例如：貓咪圖案",
     "width": "寬度",
     "height": "高度",
     "offsetX": "X 偏移",
     "offsetY": "Y 偏移",
     "maxColors": "最大顏色數",
+    "brightness": "亮度",
+    "contrast": "對比度",
+    "saturation": "飽和度",
+    "outlineWidth": "輪廓寬度",
+    "color": "顏色",
+    "skipCornerBeads": "跳過角落珠子",
+    "invalidNumber": "必須是介於 {{min}} 和 {{max}} 之間的整數",
     "lockHeight": "鎖定高度為圖片比例"
   },
   "messages": {
     "processing": "正在去除邊緣…",
-    "matching": "正在匹配顏色…"
+    "matching": "正在匹配顏色…",
+    "blueprintSaved": "藍圖已儲存。",
+    "blueprintRenamed": "藍圖已重新命名。"
   },
   "empty": {
     "result": {
       "title": "暫無可編輯內容",
       "description": "上傳圖片並產生藍圖後即可在此檢視。"
+    },
+    "blueprints": {
+      "title": "還沒有藍圖",
+      "description": "上傳圖片以產生您的第一份藍圖。"
+    },
+    "search": {
+      "title": "未找到藍圖",
+      "description": "請嘗試其他搜尋詞。"
     }
   },
   "sidebar": {
     "showColorCode": "顯示顏色代碼",
     "showGridLines": "顯示網格線",
     "displaySettings": "顯示設定",
-    "statistics": "統計"
+    "statistics": "統計",
+    "dimensions": "尺寸",
+    "colors": "顏色",
+    "selectedColor": "已選顏色",
+    "beadShape": "珠子形狀",
+    "tools": "工具"
   },
   "stats": {
     "size": "尺寸",
+    "realLifeSize": "實際尺寸",
     "totalBeads": "總珠子數",
     "colorsUsed": "使用顏色"
   },
+  "metadata": {
+    "dimensions": "尺寸",
+    "totalBeads": "總珠子數",
+    "colorsUsed": "使用顏色",
+    "created": "建立時間"
+  },
+  "items": {
+    "blueprint": "藍圖",
+    "unsavedBlueprint": "未儲存藍圖"
+  },
+  "colorPalette": {
+    "title": "調色盤",
+    "usedColors": "已用顏色",
+    "allColors": "所有顏色"
+  },
   "buttons": {
     "uploadImage": "上傳圖片",
-    "proceed": "繼續"
+    "newBlueprint": "新增藍圖",
+    "fromScratch": "從空白開始",
+    "importFromImage": "從圖片匯入",
+    "proceed": "繼續",
+    "save": "儲存",
+    "saveBlueprint": "儲存藍圖",
+    "autoTrim": "自動裁剪",
+    "hand": "手形",
+    "bucket": "油漆桶",
+    "brush": "畫筆",
+    "eraser": "橡皮擦",
+    "eyedropper": "取色器",
+    "fill": "填充",
+    "clear": "清除",
+    "addOutline": "新增輪廓",
+    "preview": "預覽",
+    "leave": "離開",
+    "square": "方形",
+    "rounded": "圓角",
+    "circle": "圓形",
+    "ring": "環形"
   }
 }

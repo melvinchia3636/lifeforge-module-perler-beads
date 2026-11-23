@@ -125,15 +125,34 @@ export async function matchImageToMard(
   height: number,
   offsetX = 0,
   offsetY = 0,
-  maxColors = 0
+  maxColors = 0,
+  brightness = 100,
+  contrast = 100,
+  saturation = 100
 ): Promise<string[][]> {
   // The match route receives the already prepared (trimmed, de-aliased)
   // image from storage. Decode it as-is so preview and result stay aligned —
   // re-trimming here could strip another content-coloured border.
-  const { data, info } = await sharp(buffer)
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true })
+  let pipeline = sharp(buffer).ensureAlpha()
+
+  if (brightness !== 100 || saturation !== 100) {
+    pipeline = pipeline.modulate({
+      brightness: brightness / 100,
+      saturation: saturation / 100
+    })
+  }
+
+  if (contrast !== 100) {
+    const factor = contrast / 100
+    const intercept = 128 * (1 - factor)
+
+    pipeline = pipeline.linear(
+      [factor, factor, factor, 1],
+      [intercept, intercept, intercept, 0]
+    )
+  }
+
+  const { data, info } = await pipeline.raw().toBuffer({ resolveWithObject: true })
 
   const channels = info.channels
 

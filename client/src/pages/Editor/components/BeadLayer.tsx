@@ -1,5 +1,6 @@
 import { type ReactNode, useMemo } from 'react'
 
+import type { BeadShape } from '../types'
 import { CELL_SIZE, CHUNK_SIZE } from '../constants'
 import { BeadChunk } from './BeadChunk'
 
@@ -8,6 +9,7 @@ interface BeadLayerProps {
   width: number
   height: number
   scale: number
+  shape: BeadShape
   showColorCodes: boolean
   viewport: {
     left: number
@@ -22,6 +24,7 @@ export function BeadLayer({
   width,
   height,
   scale,
+  shape,
   showColorCodes,
   viewport
 }: BeadLayerProps) {
@@ -57,6 +60,8 @@ export function BeadLayer({
             grid={grid}
             row={row}
             rows={rows}
+            scale={scale}
+            shape={shape}
             showColorCodes={showCodes}
           />
         )
@@ -64,7 +69,7 @@ export function BeadLayer({
     }
 
     return elements
-  }, [grid, width, height, viewport, showCodes])
+  }, [grid, width, height, viewport, showCodes, shape, scale])
 
   return <>{chunks}</>
 }

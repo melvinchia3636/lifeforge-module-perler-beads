@@ -3,44 +3,117 @@
   "description": "Create, generate, and store perler bead blueprints.",
   "modals": {
     "uploadImage": "Upload Image",
-    "gridPreview": "Grid Preview"
+    "gridPreview": "Grid Preview",
+    "saveBlueprint": "Save Blueprint",
+    "renameBlueprint": "Rename Blueprint",
+    "addOutline": "Add Outline",
+    "preview": "Preview",
+    "leaveUnsaved": {
+      "title": "Unsaved Blueprint",
+      "description": "You have unsaved changes. Leave without saving?"
+    }
   },
   "tabs": {
     "original": "Original",
-    "result": "Result"
+    "result": "Result",
+    "grid": "Grid",
+    "colors": "Colors",
+    "adjustments": "Adjustments",
+    "view": "View",
+    "edit": "Edit"
   },
   "inputs": {
     "image": "Image",
+    "name": "Name",
+    "namePlaceholder": "e.g. Cat portrait",
     "width": "Width",
     "height": "Height",
     "offsetX": "Offset X",
     "offsetY": "Offset Y",
     "maxColors": "Max colors",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "saturation": "Saturation",
+    "outlineWidth": "Outline Width",
+    "color": "Color",
+    "skipCornerBeads": "Skip Corner Beads",
+    "invalidNumber": "Must be a whole number between {{min}} and {{max}}",
     "lockHeight": "Lock height to image"
   },
   "messages": {
     "processing": "Removing margins…",
-    "matching": "Matching colours…"
+    "matching": "Matching colours…",
+    "blueprintSaved": "Blueprint saved.",
+    "blueprintRenamed": "Blueprint renamed."
   },
   "empty": {
     "result": {
       "title": "Nothing to Edit",
       "description": "Upload an image and generate a blueprint to see it here."
+    },
+    "blueprints": {
+      "title": "No Blueprints Yet",
+      "description": "Upload an image to generate your first blueprint."
+    },
+    "search": {
+      "title": "No Blueprints Found",
+      "description": "Try a different search term."
     }
   },
   "sidebar": {
     "showColorCode": "Show color code",
     "showGridLines": "Show grid lines",
     "displaySettings": "Display settings",
-    "statistics": "Statistics"
+    "statistics": "Statistics",
+    "dimensions": "Dimensions",
+    "colors": "Colors",
+    "selectedColor": "Selected Color",
+    "beadShape": "Bead Shape",
+    "tools": "Tools"
   },
   "stats": {
     "size": "Size",
+    "realLifeSize": "Real-life size",
     "totalBeads": "Total beads",
     "colorsUsed": "Colors used"
   },
+  "metadata": {
+    "dimensions": "Dimensions",
+    "totalBeads": "Total Beads",
+    "colorsUsed": "Colors Used",
+    "created": "Created"
+  },
+  "items": {
+    "blueprint": "Blueprint",
+    "unsavedBlueprint": "Unsaved Blueprint"
+  },
+  "colorPalette": {
+    "title": "Color Palette",
+    "usedColors": "Used Colors",
+    "allColors": "All Colors"
+  },
   "buttons": {
     "uploadImage": "Upload image",
-    "proceed": "Proceed"
+    "newBlueprint": "New Blueprint",
+    "fromScratch": "From Scratch",
+    "importFromImage": "Import from Image",
+    "proceed": "Proceed",
+    "save": "Save",
+    "saveBlueprint": "Save Blueprint",
+    "autoTrim": "Auto Trim",
+    "hand": "Hand",
+    "bucket": "Bucket",
+    "brush": "Brush",
+    "eraser": "Eraser",
+    "eyedropper": "Eyedropper",
+    "fill": "Fill",
+    "clear": "Clear",
+    "addOutline": "Add Outline",
+    "preview": "Preview",
+    "leave": "Leave",
+    "square": "Square",
+    "rounded": "Rounded",
+    "circle": "Circle",
+    "ring": "Ring"
   }
 }

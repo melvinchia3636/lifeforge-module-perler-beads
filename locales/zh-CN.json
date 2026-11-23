@@ -3,44 +3,117 @@
   "description": "创建、生成并保存拼豆蓝图。",
   "modals": {
     "uploadImage": "上传图片",
-    "gridPreview": "网格预览"
+    "gridPreview": "网格预览",
+    "saveBlueprint": "保存蓝图",
+    "renameBlueprint": "重命名蓝图",
+    "addOutline": "添加轮廓",
+    "preview": "预览",
+    "leaveUnsaved": {
+      "title": "蓝图尚未保存",
+      "description": "您有未保存的更改。要在不保存的情况下离开吗？"
+    }
   },
   "tabs": {
     "original": "原图",
-    "result": "结果"
+    "result": "结果",
+    "grid": "网格",
+    "colors": "颜色",
+    "adjustments": "调整",
+    "view": "查看",
+    "edit": "编辑"
   },
   "inputs": {
     "image": "图片",
+    "name": "名称",
+    "namePlaceholder": "例如：猫咪图案",
     "width": "宽度",
     "height": "高度",
     "offsetX": "X 偏移",
     "offsetY": "Y 偏移",
     "maxColors": "最大颜色数",
+    "brightness": "亮度",
+    "contrast": "对比度",
+    "saturation": "饱和度",
+    "outlineWidth": "轮廓宽度",
+    "color": "颜色",
+    "skipCornerBeads": "跳过角落珠子",
+    "invalidNumber": "必须是介于 {{min}} 和 {{max}} 之间的整数",
     "lockHeight": "锁定高度为图片比例"
   },
   "messages": {
     "processing": "正在去除边缘…",
-    "matching": "正在匹配颜色…"
+    "matching": "正在匹配颜色…",
+    "blueprintSaved": "蓝图已保存。",
+    "blueprintRenamed": "蓝图已重命名。"
   },
   "empty": {
     "result": {
       "title": "暂无可编辑内容",
       "description": "上传图片并生成蓝图后即可在此查看。"
+    },
+    "blueprints": {
+      "title": "还没有蓝图",
+      "description": "上传图片以生成您的第一份蓝图。"
+    },
+    "search": {
+      "title": "未找到蓝图",
+      "description": "请尝试其他搜索词。"
     }
   },
   "sidebar": {
     "showColorCode": "显示颜色代码",
     "showGridLines": "显示网格线",
     "displaySettings": "显示设置",
-    "statistics": "统计"
+    "statistics": "统计",
+    "dimensions": "尺寸",
+    "colors": "颜色",
+    "selectedColor": "已选颜色",
+    "beadShape": "珠子形状",
+    "tools": "工具"
   },
   "stats": {
     "size": "尺寸",
+    "realLifeSize": "实际尺寸",
     "totalBeads": "总珠子数",
     "colorsUsed": "使用颜色"
   },
+  "metadata": {
+    "dimensions": "尺寸",
+    "totalBeads": "总珠子数",
+    "colorsUsed": "使用颜色",
+    "created": "创建时间"
+  },
+  "items": {
+    "blueprint": "蓝图",
+    "unsavedBlueprint": "未保存蓝图"
+  },
+  "colorPalette": {
+    "title": "调色板",
+    "usedColors": "已用颜色",
+    "allColors": "所有颜色"
+  },
   "buttons": {
     "uploadImage": "上传图片",
-    "proceed": "继续"
+    "newBlueprint": "新建蓝图",
+    "fromScratch": "从空白开始",
+    "importFromImage": "从图片导入",
+    "proceed": "继续",
+    "save": "保存",
+    "saveBlueprint": "保存蓝图",
+    "autoTrim": "自动裁剪",
+    "hand": "手形",
+    "bucket": "油漆桶",
+    "brush": "画笔",
+    "eraser": "橡皮擦",
+    "eyedropper": "取色器",
+    "fill": "填充",
+    "clear": "清除",
+    "addOutline": "添加轮廓",
+    "preview": "预览",
+    "leave": "离开",
+    "square": "方形",
+    "rounded": "圆角",
+    "circle": "圆形",
+    "ring": "环形"
   }
 }

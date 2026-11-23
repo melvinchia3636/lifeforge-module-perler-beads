@@ -26,6 +26,7 @@ import { useImageDimensions } from './hooks/useImageDimensions'
 import { trimGrid } from './utils/trimGrid'
 
 const DEFAULT_SIZE = 29
+const DEFAULT_ADJUSTMENT = 100
 const DEBOUNCE_MS = 500
 
 const TABS = [
@@ -33,7 +34,14 @@ const TABS = [
   { id: 'result', name: 'tabs.result', icon: 'tabler:grid-dots' }
 ] as const
 
+const SETTINGS_TABS = [
+  { id: 'grid', name: 'tabs.grid', icon: 'tabler:grid-dots' },
+  { id: 'colors', name: 'tabs.colors', icon: 'tabler:palette' },
+  { id: 'adjustments', name: 'tabs.adjustments', icon: 'tabler:adjustments' }
+] as const
+
 type TabId = (typeof TABS)[number]['id']
+type SettingsTabId = (typeof SETTINGS_TABS)[number]['id']
 
 function ImageGridModal({
   data: { src, key },
@@ -48,11 +56,15 @@ function ImageGridModal({
   const { t } = useModuleTranslation()
   const navigate = useNavigate()
   const [tab, setTab] = useState<TabId>('original')
+  const [settingsTab, setSettingsTab] = useState<SettingsTabId>('grid')
   const [width, setWidth] = useState(DEFAULT_SIZE)
   const [height, setHeight] = useState(DEFAULT_SIZE)
   const [offsetX, setOffsetX] = useState(0)
   const [offsetY, setOffsetY] = useState(0)
   const [maxColors, setMaxColors] = useState(0)
+  const [brightness, setBrightness] = useState(DEFAULT_ADJUSTMENT)
+  const [contrast, setContrast] = useState(DEFAULT_ADJUSTMENT)
+  const [saturation, setSaturation] = useState(DEFAULT_ADJUSTMENT)
   const [lockHeight, setLockHeight] = useState(false)
   const imageSize = useImageDimensions(src)
 
@@ -69,19 +81,30 @@ function ImageGridModal({
     )
   }, [lockHeight, width, imageSize.width, imageSize.height])
 
-  const paramsKey = `${width}|${height}|${offsetX}|${offsetY}|${maxColors}`
+  const paramsKey = `${width}|${height}|${offsetX}|${offsetY}|${maxColors}|${brightness}|${contrast}|${saturation}`
   const debouncedKey = useDebouncedValue(paramsKey, DEBOUNCE_MS)
 
   const params = useMemo(() => {
-    const [nextWidth, nextHeight, nextOffsetX, nextOffsetY, nextMaxColors] =
-      debouncedKey.split('|').map(Number)
+    const [
+      nextWidth,
+      nextHeight,
+      nextOffsetX,
+      nextOffsetY,
+      nextMaxColors,
+      nextBrightness,
+      nextContrast,
+      nextSaturation
+    ] = debouncedKey.split('|').map(Number)
 
     return {
       width: nextWidth!,
       height: nextHeight!,
       offsetX: nextOffsetX!,
       offsetY: nextOffsetY!,
-      maxColors: nextMaxColors!
+      maxColors: nextMaxColors!,
+      brightness: nextBrightness!,
+      contrast: nextContrast!,
+      saturation: nextSaturation!
     }
   }, [debouncedKey])
 
@@ -93,7 +116,10 @@ function ImageGridModal({
         height: params.height.toString(),
         offsetX: params.offsetX.toString(),
         offsetY: params.offsetY.toString(),
-        maxColors: params.maxColors.toString()
+        maxColors: params.maxColors.toString(),
+        brightness: params.brightness.toString(),
+        contrast: params.contrast.toString(),
+        saturation: params.saturation.toString()
       })
       .queryOptions({ enabled: Boolean(key) })
   )
@@ -161,10 +187,13 @@ function ImageGridModal({
           >
             {tab === 'original' ? (
               <ImageGridCanvas
+                brightness={brightness}
                 columns={width}
+                contrast={contrast}
                 offsetX={offsetX}
                 offsetY={offsetY}
                 rows={height}
+                saturation={saturation}
                 src={src ?? ''}
               />
             ) : (
@@ -183,68 +212,117 @@ function ImageGridModal({
           </TransformComponent>
         </TransformWrapper>
       </Flex>
-      <Stack gap="md" mt="lg">
-        <SliderInput
-          icon="tabler:arrows-horizontal"
-          label="Width"
-          max={512}
-          min={1}
-          value={width}
-          onChange={setWidth}
-        />
-        <SliderInput
-          disabled={lockHeight}
-          icon="tabler:arrows-vertical"
-          label="Height"
-          max={512}
-          min={1}
-          value={height}
-          onChange={setHeight}
-        />
-        <Checkbox
-          checked={lockHeight}
-          disabled={!imageSize.width || !imageSize.height}
-          label={t('inputs.lockHeight')}
-          onCheckedChange={setLockHeight}
-        />
-        <SliderInput
-          center={0}
-          icon="tabler:grid-dots"
-          label="Offset X"
-          max={50}
-          min={-50}
-          value={offsetX}
-          onChange={setOffsetX}
-        />
-        <SliderInput
-          center={0}
-          icon="tabler:grid-dots"
-          label="Offset Y"
-          max={50}
-          min={-50}
-          value={offsetY}
-          onChange={setOffsetY}
-        />
-        <SliderInput
-          icon="tabler:palette"
-          label="Max colors"
-          max={64}
-          min={0}
-          renderValue={value => (value === 0 ? '∞' : value.toString())}
-          value={maxColors}
-          onChange={setMaxColors}
-        />
-        <Button
-          disabled={!result || isStale || matchQuery.isFetching}
-          icon="tabler:palette"
-          loading={matchQuery.isFetching}
-          mt="sm"
-          width="100%"
-          onClick={handleGenerate}
-        >
-          {t('buttons.proceed')}
-        </Button>
-      </Stack>
+      <Tabs
+        currentTab={settingsTab}
+        enabled={['grid', 'colors', 'adjustments']}
+        items={SETTINGS_TABS.map(item => ({ ...item, name: t(item.name) }))}
+        mt="lg"
+        onTabChange={setSettingsTab}
+      />
+      <Box mt="md">
+        {settingsTab === 'grid' && (
+          <Stack gap="md">
+            <SliderInput
+              icon="tabler:arrows-horizontal"
+              label="Width"
+              max={512}
+              min={1}
+              value={width}
+              onChange={setWidth}
+            />
+            <SliderInput
+              disabled={lockHeight}
+              icon="tabler:arrows-vertical"
+              label="Height"
+              max={512}
+              min={1}
+              value={height}
+              onChange={setHeight}
+            />
+            <Checkbox
+              checked={lockHeight}
+              disabled={!imageSize.width || !imageSize.height}
+              label={t('inputs.lockHeight')}
+              onCheckedChange={setLockHeight}
+            />
+            <SliderInput
+              center={0}
+              icon="tabler:grid-dots"
+              label="Offset X"
+              max={50}
+              min={-50}
+              value={offsetX}
+              onChange={setOffsetX}
+            />
+            <SliderInput
+              center={0}
+              icon="tabler:grid-dots"
+              label="Offset Y"
+              max={50}
+              min={-50}
+              value={offsetY}
+              onChange={setOffsetY}
+            />
+          </Stack>
+        )}
+        {settingsTab === 'colors' && (
+          <Stack gap="md">
+            <SliderInput
+              icon="tabler:palette"
+              label="Max colors"
+              max={64}
+              min={0}
+              renderValue={value => (value === 0 ? '∞' : value.toString())}
+              value={maxColors}
+              onChange={setMaxColors}
+            />
+          </Stack>
+        )}
+        {settingsTab === 'adjustments' && (
+          <Stack gap="md">
+            <SliderInput
+              center={DEFAULT_ADJUSTMENT}
+              icon="tabler:sun"
+              label="Brightness"
+              max={200}
+              min={0}
+              renderValue={value => `${value}%`}
+              value={brightness}
+              onChange={setBrightness}
+            />
+            <SliderInput
+              center={DEFAULT_ADJUSTMENT}
+              icon="tabler:contrast"
+              label="Contrast"
+              max={200}
+              min={0}
+              renderValue={value => `${value}%`}
+              value={contrast}
+              onChange={setContrast}
+            />
+            <SliderInput
+              center={DEFAULT_ADJUSTMENT}
+              icon="tabler:droplet"
+              label="Saturation"
+              max={200}
+              min={0}
+              renderValue={value => `${value}%`}
+              value={saturation}
+              onChange={setSaturation}
+            />
+          </Stack>
+        )}
+      </Box>
+      <Button
+        disabled={!result || isStale || matchQuery.isFetching}
+        icon="tabler:palette"
+        loading={matchQuery.isFetching}
+        mt="lg"
+        width="100%"
+        onClick={handleGenerate}
+      >
+        proceed
+      </Button>
     </Box>
   )
 }

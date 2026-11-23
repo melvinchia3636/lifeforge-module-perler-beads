@@ -3,44 +3,117 @@
   "description": "Cipta, jana dan simpan blueprint manik perler.",
   "modals": {
     "uploadImage": "Muat Naik Imej",
-    "gridPreview": "Pratonton Grid"
+    "gridPreview": "Pratonton Grid",
+    "saveBlueprint": "Simpan Blueprint",
+    "renameBlueprint": "Namakan Semula Blueprint",
+    "addOutline": "Tambah Garis Luar",
+    "preview": "Pratonton",
+    "leaveUnsaved": {
+      "title": "Blueprint Belum Disimpan",
+      "description": "Perubahan anda belum disimpan. Keluar tanpa menyimpan?"
+    }
   },
   "tabs": {
     "original": "Asal",
-    "result": "Hasil"
+    "result": "Hasil",
+    "grid": "Grid",
+    "colors": "Warna",
+    "adjustments": "Pelarasan",
+    "view": "Lihat",
+    "edit": "Sunting"
   },
   "inputs": {
     "image": "Imej",
+    "name": "Nama",
+    "namePlaceholder": "cth. Potret kucing",
     "width": "Lebar",
     "height": "Tinggi",
     "offsetX": "Ofset X",
     "offsetY": "Ofset Y",
     "maxColors": "Warna maksimum",
+    "brightness": "Kecerahan",
+    "contrast": "Kontras",
+    "saturation": "Ketepuan",
+    "outlineWidth": "Lebar Garis Luar",
+    "color": "Warna",
+    "skipCornerBeads": "Langkau Manik Sudut",
+    "invalidNumber": "Mesti nombor bulat antara {{min}} dan {{max}}",
     "lockHeight": "Kunci tinggi kepada imej"
   },
   "messages": {
     "processing": "Membuang margin…",
-    "matching": "Memadankan warna…"
+    "matching": "Memadankan warna…",
+    "blueprintSaved": "Blueprint disimpan.",
+    "blueprintRenamed": "Blueprint dinamakan semula."
   },
   "empty": {
     "result": {
       "title": "Tiada Apa untuk Disunting",
       "description": "Muat naik imej dan jana blueprint untuk melihatnya di sini."
+    },
+    "blueprints": {
+      "title": "Belum Ada Blueprint",
+      "description": "Muat naik imej untuk menjana blueprint pertama anda."
+    },
+    "search": {
+      "title": "Tiada Blueprint Ditemui",
+      "description": "Cuba kata kunci carian yang lain."
     }
   },
   "sidebar": {
     "showColorCode": "Tunjuk kod warna",
     "showGridLines": "Tunjuk garis grid",
     "displaySettings": "Tetapan paparan",
-    "statistics": "Statistik"
+    "statistics": "Statistik",
+    "dimensions": "Dimensi",
+    "colors": "Warna",
+    "selectedColor": "Warna Dipilih",
+    "beadShape": "Bentuk Manik",
+    "tools": "Alatan"
   },
   "stats": {
     "size": "Saiz",
+    "realLifeSize": "Saiz sebenar",
     "totalBeads": "Jumlah manik",
     "colorsUsed": "Warna digunakan"
   },
+  "metadata": {
+    "dimensions": "Dimensi",
+    "totalBeads": "Jumlah Manik",
+    "colorsUsed": "Warna Digunakan",
+    "created": "Dicipta"
+  },
+  "items": {
+    "blueprint": "Blueprint",
+    "unsavedBlueprint": "Blueprint Belum Disimpan"
+  },
+  "colorPalette": {
+    "title": "Palet Warna",
+    "usedColors": "Warna Digunakan",
+    "allColors": "Semua Warna"
+  },
   "buttons": {
     "uploadImage": "Muat naik imej",
-    "proceed": "Teruskan"
+    "newBlueprint": "Blueprint Baharu",
+    "fromScratch": "Dari Kosong",
+    "importFromImage": "Import dari Imej",
+    "proceed": "Teruskan",
+    "save": "Simpan",
+    "saveBlueprint": "Simpan Blueprint",
+    "autoTrim": "Potong Automatik",
+    "hand": "Tangan",
+    "bucket": "Baldi",
+    "brush": "Berus",
+    "eraser": "Pemadam",
+    "eyedropper": "Pipet Warna",
+    "fill": "Isi",
+    "clear": "Kosongkan",
+    "addOutline": "Tambah Garis Luar",
+    "preview": "Pratonton",
+    "leave": "Keluar",
+    "square": "Segi Empat",
+    "rounded": "Bulat Tepi",
+    "circle": "Bulatan",
+    "ring": "Cincin"
   }
 }

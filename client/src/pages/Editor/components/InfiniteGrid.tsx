@@ -94,10 +94,10 @@ export function InfiniteGrid({
         context.strokeStyle = borderColor
         context.lineWidth = borderWidth
         context.strokeRect(
-          inset,
-          inset,
-          contentWidth - borderWidth,
-          contentHeight - borderWidth
+          -inset,
+          -inset,
+          contentWidth + borderWidth,
+          contentHeight + borderWidth
         )
       }}
     />

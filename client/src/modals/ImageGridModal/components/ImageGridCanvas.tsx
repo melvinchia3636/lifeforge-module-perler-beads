@@ -6,6 +6,9 @@ interface ImageGridCanvasProps {
   rows: number
   offsetX: number
   offsetY: number
+  brightness: number
+  contrast: number
+  saturation: number
 }
 
 const MAX_CANVAS_SIZE = 1600
@@ -15,7 +18,10 @@ export function ImageGridCanvas({
   columns,
   rows,
   offsetX,
-  offsetY
+  offsetY,
+  brightness,
+  contrast,
+  saturation
 }: ImageGridCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const imageRef = useRef<HTMLImageElement | null>(null)
@@ -62,6 +68,8 @@ export function ImageGridCanvas({
     const imageLeft = (width - drawnWidth) / 2
     const imageTop = (height - drawnHeight) / 2
 
+    context.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%)`
+
     context.drawImage(
       image,
       imageLeft,
@@ -69,6 +77,8 @@ export function ImageGridCanvas({
       drawnWidth,
       drawnHeight
     )
+
+    context.filter = 'none'
 
     const gridLineColor =
       window
@@ -112,7 +122,7 @@ export function ImageGridCanvas({
       context.lineTo(originX + gridWidth, y)
       context.stroke()
     }
-  }, [columns, rows, offsetX, offsetY])
+  }, [columns, rows, offsetX, offsetY, brightness, contrast, saturation])
 
   useEffect(() => {
     drawRef.current = draw

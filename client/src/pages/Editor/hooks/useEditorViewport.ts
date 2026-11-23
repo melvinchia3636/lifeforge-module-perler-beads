@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type Konva from 'konva'
 
 import { usePersonalization } from '@lifeforge/ui'
@@ -9,6 +9,8 @@ import { useElementSize } from './useElementSize'
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value))
+
+const PAN_MARGIN = 64
 
 export function useEditorViewport(editorState: EditorState | null) {
   const { derivedTheme, bgTempPalette } = usePersonalization()
@@ -25,6 +27,16 @@ export function useEditorViewport(editorState: EditorState | null) {
     '#a1a1aa'
   const borderColor = chunkColor
   const numberColor = bgTempPalette[500] ?? '#71717a'
+
+  const clampViewPosition = (x: number, y: number, scale: number) => {
+    const boardWidth = (editorState?.width ?? 0) * CELL_SIZE * scale
+    const boardHeight = (editorState?.height ?? 0) * CELL_SIZE * scale
+
+    return {
+      x: clamp(x, PAN_MARGIN - boardWidth, width - PAN_MARGIN),
+      y: clamp(y, PAN_MARGIN - boardHeight, height - PAN_MARGIN)
+    }
+  }
 
   useEffect(() => {
     if (!editorState || width === 0 || height === 0 || hasFitted.current) {
@@ -64,42 +76,103 @@ export function useEditorViewport(editorState: EditorState | null) {
   const handleWheel = (event: Konva.KonvaEventObject<WheelEvent>) => {
     event.evt.preventDefault()
 
-    const stage = stageRef.current
-    const pointer = stage?.getPointerPosition()
+    if (event.evt.ctrlKey || event.evt.metaKey) {
+      const stage = stageRef.current
+      const pointer = stage?.getPointerPosition()
 
-    if (!stage || !pointer) {
+      if (!stage || !pointer) {
+        return
+      }
+
+      const nextScale = clamp(
+        view.scale * (event.evt.deltaY > 0 ? 0.9 : 1.1),
+        MIN_SCALE,
+        MAX_SCALE
+      )
+
+      if (nextScale === view.scale) {
+        return
+      }
+
+      const pointerInContent = {
+        x: (pointer.x - view.x) / view.scale,
+        y: (pointer.y - view.y) / view.scale
+      }
+      const nextPosition = clampViewPosition(
+        pointer.x - pointerInContent.x * nextScale,
+        pointer.y - pointerInContent.y * nextScale,
+        nextScale
+      )
+
+      setView({
+        scale: nextScale,
+        x: nextPosition.x,
+        y: nextPosition.y
+      })
+
       return
     }
 
-    const nextScale = clamp(
-      view.scale * (event.evt.deltaY > 0 ? 0.9 : 1.1),
-      MIN_SCALE,
-      MAX_SCALE
-    )
+    const deltaX = event.evt.shiftKey ? event.evt.deltaY : event.evt.deltaX
+    const deltaY = event.evt.shiftKey ? 0 : event.evt.deltaY
 
-    if (nextScale === view.scale) {
-      return
-    }
+    setView(current => {
+      const nextPosition = clampViewPosition(
+        current.x - deltaX,
+        current.y - deltaY,
+        current.scale
+      )
 
-    const pointerInContent = {
-      x: (pointer.x - view.x) / view.scale,
-      y: (pointer.y - view.y) / view.scale
-    }
-
-    setView({
-      scale: nextScale,
-      x: pointer.x - pointerInContent.x * nextScale,
-      y: pointer.y - pointerInContent.y * nextScale
+      return {
+        ...current,
+        x: nextPosition.x,
+        y: nextPosition.y
+      }
     })
   }
 
   const handleDrag = (event: Konva.KonvaEventObject<DragEvent>) => {
-    setView(current => ({
-      ...current,
-      x: event.target.x(),
-      y: event.target.y()
-    }))
+    setView(current => {
+      const nextPosition = clampViewPosition(
+        event.target.x(),
+        event.target.y(),
+        current.scale
+      )
+
+      return {
+        ...current,
+        x: nextPosition.x,
+        y: nextPosition.y
+      }
+    })
   }
+
+  const panBy = (deltaX: number, deltaY: number) => {
+    setView(current => {
+      const nextPosition = clampViewPosition(
+        current.x + deltaX,
+        current.y + deltaY,
+        current.scale
+      )
+
+      return {
+        ...current,
+        x: nextPosition.x,
+        y: nextPosition.y
+      }
+    })
+  }
+
+  const centerView = useCallback(
+    (boardWidth: number, boardHeight: number) => {
+      setView(current => ({
+        ...current,
+        x: (width - boardWidth * CELL_SIZE * current.scale) / 2,
+        y: (height - boardHeight * CELL_SIZE * current.scale) / 2
+      }))
+    },
+    [width, height]
+  )
 
   return {
     containerRef,
@@ -113,6 +186,8 @@ export function useEditorViewport(editorState: EditorState | null) {
     chunkColor,
     numberColor,
     handleWheel,
-    handleDrag
+    handleDrag,
+    panBy,
+    centerView
   }
 }

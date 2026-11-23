@@ -61,7 +61,10 @@ export const match = forge
         height: z.string(),
         offsetX: z.string().optional(),
         offsetY: z.string().optional(),
-        maxColors: z.string().optional()
+        maxColors: z.string().optional(),
+        brightness: z.string().optional(),
+        contrast: z.string().optional(),
+        saturation: z.string().optional()
       })
     },
     output: {
@@ -77,6 +80,9 @@ export const match = forge
       const offsetX = parseInt(query.offsetX ?? '0', 10)
       const offsetY = parseInt(query.offsetY ?? '0', 10)
       const maxColors = parseInt(query.maxColors ?? '0', 10)
+      const brightness = parseInt(query.brightness ?? '100', 10)
+      const contrast = parseInt(query.contrast ?? '100', 10)
+      const saturation = parseInt(query.saturation ?? '100', 10)
 
       if (
         !Number.isFinite(width) ||
@@ -93,7 +99,16 @@ export const match = forge
         offsetY > 50 ||
         !Number.isFinite(maxColors) ||
         maxColors < 0 ||
-        maxColors > 256
+        maxColors > 256 ||
+        !Number.isFinite(brightness) ||
+        brightness < 0 ||
+        brightness > 200 ||
+        !Number.isFinite(contrast) ||
+        contrast < 0 ||
+        contrast > 200 ||
+        !Number.isFinite(saturation) ||
+        saturation < 0 ||
+        saturation > 200
       ) {
         return response.badRequest('Invalid grid parameters')
       }
@@ -112,7 +127,10 @@ export const match = forge
           height,
           offsetX,
           offsetY,
-          maxColors
+          maxColors,
+          brightness,
+          contrast,
+          saturation
         )
 
         return response.ok({ grid })
